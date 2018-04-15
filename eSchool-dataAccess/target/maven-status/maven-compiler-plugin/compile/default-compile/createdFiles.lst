@@ -1,0 +1,5 @@
+org\eSchool\dataAccess\dao\impl\RoleDAOImpl.class
+org\eSchool\dataAccess\dao\impl\BaseDAOImpl.class
+org\eSchool\dataAccess\dao\IUserDAO.class
+org\eSchool\dataAccess\dao\impl\UserDAOImpl.class
+org\eSchool\dataAccess\dao\IRoleDAO.class

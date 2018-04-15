@@ -1,0 +1,3 @@
+org\eSchool\dataAccess\dao\impl\RoleMasterImplTest.class
+org\eSchool\dataAccess\AppTest.class
+org\eSchool\dataAccess\dao\impl\UserDAOImplTest.class

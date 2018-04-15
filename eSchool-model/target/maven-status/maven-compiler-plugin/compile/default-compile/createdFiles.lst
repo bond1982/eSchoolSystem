@@ -1,0 +1,14 @@
+org\eSchool\vo\Adapter1.class
+org\eSchool\vo\ObjectFactory.class
+org\eSchool\vo\Student.class
+org\eSchool\vo\University.class
+org\eSchool\model\ConverterException.class
+org\eSchool\model\User.class
+org\eSchool\model\DateConverter.class
+org\eSchool\model\App.class
+org\eSchool\model\RoleMaster.class
+org\eSchool\vo\User.class
+org\eSchool\vo\University$Students.class
+org\eSchool\vo\Gender.class
+org\eSchool\model\BaseEntity.class
+org\eSchool\vo\Role.class

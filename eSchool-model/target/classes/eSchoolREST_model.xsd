@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Student">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="firstName" type="xs:string" />
+				<xs:element name="lastName" type="xs:string" />
+				<xs:element name="birthDate" type="xs:date" />
+				<xs:element name="section">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="4" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:int" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="User">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:integer" />
+				<xs:element name="firstName" type="xs:string" />
+				<xs:element name="lastName" type="xs:string" />
+				<xs:element name="middleName" type="xs:string" />
+				<xs:element name="userName" type="xs:string" />
+				<xs:element name="password" type="xs:string" />
+				<xs:element name="birthDate" type="xs:date" />
+				<xs:element name="emailAddress" type="xs:string" />
+				<xs:element name="gender" type="Gender"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="University">
+		<xs:annotation>
+			<xs:documentation>University Details</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+				<xs:element name="address" type="xs:string" />
+				<xs:element name="Students">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Student" minOccurs="1" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Role">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="roleId" type="xs:integer" />
+				<xs:element name="roleName" type="xs:string" />
+				<xs:element name="roleDescription" type="xs:string" />
+				<xs:element name="createdBy" type="xs:string" />
+				<xs:element name="modifiedBy" type="xs:string" />
+				<xs:element name="createdDate" type="xs:dateTime" />
+				<xs:element name="modifiedDate" type="xs:dateTime" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="Gender" final="restriction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Male" />
+			<xs:enumeration value="Female" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
