@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<!-- to support Java-to-JSON and vice-versa conversion -->
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+
+	<!-- to support Java-to-XML and vice-versa conversion -->
+	<bean id="jaxbXmlProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" />
+
+	<!-- CXF Swagger2Feature -->
+	<bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature">
+		<property name="resourcePackage" value="org.eSchool.resources.endpoint" />
+		<property name="basePath" value="/eSchool-webapp/services/" />
+		<property name="title" >
+			<value>eSchool REST API</value>
+		</property>
+		<property name="description">
+			<value>This shows available REST API's in eSchool</value>
+		</property>
+	</bean>
+	
+
+	<!-- CXFServlet configured in web.xml sends requests here -->
+	<jaxrs:server id="restContainer" address="/">
+		<jaxrs:serviceBeans>
+			<ref bean="userResource" />
+			<ref bean="roleResource"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" /> <!-- use .json to get data in JSON format -->
+			<entry key="xml" value="application/xml" />   <!-- use .xml to get data in XML format -->
+		</jaxrs:extensionMappings>
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+			<ref bean="jaxbXmlProvider" />
+		</jaxrs:providers>
+		 <jaxrs:features>
+            <ref bean="swagger2Feature" />
+        </jaxrs:features>
+	</jaxrs:server>
+	
+	<!-- User Resource  -->
+	<bean id="userResource" class="org.eSchool.resources.endpoint.UserResourceEndpoint">
+		<property name="userBusiness" ref="userBusiness"/>
+	</bean>
+	
+	<bean id="roleResource" class="org.eSchool.resources.endpoint.RoleResourceEndpoint">
+		<property name="roleBusiness" ref="roleBusiness"/>
+	</bean>
+	
+</beans>
